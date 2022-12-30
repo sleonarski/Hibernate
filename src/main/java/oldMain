@@ -1,0 +1,220 @@
+//        String sql = "SELECT VERSION();";
+
+//        String result = (String) session.createNativeQuery(sql).getSingleResult();
+//        System.out.println(result);
+
+//        final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+//        final EntityManager entityManager = sessionFactory.createEntityManager();
+//        entityManager.getTransaction().begin();
+//
+//        Employee employee1 = new Employee();
+//        Employee e2 = new Employee("Robert", "Lewandowski" , "1980-09-20","GutenMogrenSenior@zlotaPilka.com");
+//
+//
+//        System.out.println("_________________________________________________" );
+//           filterEmployeeByPhoneBrand("Iphone").forEach(System.out::println);
+//        System.out.println("_________________________________________________" );
+//
+//
+//
+//
+//        //CRUD here
+//
+//
+//        entityManager.persist(employee1);
+//
+//        employee1.setBirthDate("1990-05-14");
+//        employee1.setLastName("Malysz");
+//        employee1.setMail("lecAdam@rekordSkoczni.com");
+//
+//        entityManager.merge(employee1);
+//
+//        Employee e = entityManager.find(Employee.class,1);
+//
+//        System.out.println(e);
+//
+//
+//        entityManager.persist(e2);
+//
+//        Query query=entityManager.createQuery("update Employee set firstName = 'Adam' where id=:id");
+//        query.setParameter("id", 1);
+//        int rowsModified=query.executeUpdate();
+//
+//
+//
+//
+//        Query query2=entityManager.createQuery("insert into Employee (firstName, lastName, mail, birthDate) " +
+//                "select firstName, lastName, mail, birthDate from Employee where id=:id");
+//        query2.setParameter("id", 2);
+//        int rowsCopied=query2.executeUpdate();
+//
+//        Query query3=entityManager.createQuery("insert into Employee (firstName, lastName, mail, birthDate) " +
+//                "select firstName, lastName, mail, birthDate from Employee where id=:id");
+//        query3.setParameter("id", 1);
+//        int rowsCopied2=query3.executeUpdate();
+//
+//        Query query4=entityManager.createQuery("insert into Employee (firstName, lastName, mail, birthDate) " +
+//                "select firstName, lastName, mail, birthDate from Employee where id=:id");
+//        query4.setParameter("id", 1);
+//        int rowsCopied3=query4.executeUpdate();
+//
+//        Query tquery4=entityManager.createQuery("insert into Employee (firstName, lastName, mail, birthDate) " +
+//                "select firstName, lastName, mail, birthDate from Employee where id=:id");
+//        tquery4.setParameter("id", 2);
+//        int trowsCopied3=tquery4.executeUpdate();
+//        int trowsCopied4=tquery4.executeUpdate();
+//
+//
+//        Query query5=entityManager.createQuery("from Employee as e where e.firstName=:firstName");
+//        query5.setParameter("firstName", "Robert");
+//        List<Employee> employeeList=query5.getResultList();
+//
+//
+//        Query query6=entityManager.createQuery("update Employee set firstName = 'Jaroslaw' where id=:id");
+//        query6.setParameter("id", 5);
+//        int rowsModified4=query6.executeUpdate();
+//
+//
+//        employeeList.forEach(System.out::println);
+//
+//
+//        entityManager.getTransaction().commit();
+//
+//
+//
+//
+//        entityManager.getTransaction().begin();
+//        Query query7=entityManager.createQuery("update Employee set firstName = 'Bronislaw'");
+//
+//        int rowsModified5=query7.executeUpdate();
+//
+//        Query query8=entityManager.createQuery("from Employee");
+//        employeeList=query8.getResultList();
+//
+//
+//        employeeList.forEach(System.out::println);
+//
+//
+//        Phone p1 = new Phone();
+//        entityManager.persist(p1);
+//
+//
+//        Phone p2 = new Phone("Samsung");
+//        entityManager.merge(p2);
+//
+//        Phone p3 = new Phone();
+//        Phone p6 = new Phone();
+//        Phone p5 = new Phone();
+//        Phone p7 = new Phone();
+//        entityManager.persist(p3);
+//        entityManager.persist(p6);
+//        entityManager.persist(p5);
+//        entityManager.persist(p7);
+//        p6.setMark("Iphone");
+//        p7.setMark("Samsung");
+//        p5.setMark("Nokia");
+//
+//
+//
+//        Query query9=entityManager.createQuery("update Phone set mark = 'Nokia' where id=:id");
+//        query9.setParameter("id", 1);
+//        int rowsModified6=query9.executeUpdate();
+//
+//        Query query12=entityManager.createQuery("update Phone set mark = 'Iphone' where id=:id");
+//        query12.setParameter("id", 3);
+//        int rowsModified10=query12.executeUpdate();
+//
+//
+//        Query query10=entityManager.createQuery("update Employee set phone_id = 1 where id=:id");
+//        query10.setParameter("id", 3);
+//        int rowsModified8=query10.executeUpdate();
+//
+//
+//        Query query11=entityManager.createQuery("update Employee set phone_id = 2 where id=:id");
+//        query11.setParameter("id", 5);
+//        int rowsModified9=query11.executeUpdate();
+//
+//        Query q1 = entityManager.createQuery("update Employee set phone_id = 3 where id=:id");
+//        q1.setParameter("id",1);
+//        int rowsModified11=q1.executeUpdate();
+//
+//        Car c1 = new Car();
+//        entityManager.persist(c1);
+//
+//        Car c2 = new Car();
+//        entityManager.persist(c2);
+//        c2.setMark("Ferrari");
+//
+//        Car c3 = new Car();
+//        entityManager.persist(c3);
+//
+//        Query q2 = entityManager.createQuery("update Car set mark = 'Merdcedes' where id=:id");
+//        q2.setParameter("id",1);  // - tu przypisuje do id=1
+//        q2.setParameter("id",3);  // - tu "usuwa z id=1 i zapisuje do id = 3
+//        int rowsModified12=q2.executeUpdate();
+//
+//        Phone p4 = new Phone();
+//        entityManager.persist(p4);
+//
+//        Query q3 = entityManager.createQuery("update Employee set car_id = 1 where id=:id");
+//        q3.setParameter("id",2);
+//        int rm1=q3.executeUpdate();
+//
+//        p4.setMark("Xiaomi");
+//
+//        Task t1 = new Task("t1","do first task",TaskType.BLOCKER);
+//        entityManager.persist(t1);
+//        t1.setEmployee(employee1);
+//
+//        Query qq1 = entityManager.createQuery("update Task set employee_id = 7 where id=:id");
+//        qq1.setParameter("id",1);
+//        int rm2= qq1.executeUpdate();
+//
+//
+//        Query qq2 = entityManager.createQuery("delete from Employee where id=:id");
+//        qq2.setParameter("id", 6);
+//        int rm3 = qq2.executeUpdate();
+//
+//        employee1.setFirstName("Robert");
+//        employee1.setLastName("Kubica");
+//        employee1.setMail("GPKanada@najlpeszyTor.com");
+//        entityManager.merge(employee1);
+//
+//        Query qqq2 = entityManager.createQuery("update Employee set phone_id = 3 where id=:id");
+//        qqq2.setParameter("id",1);
+//        int rm4 = qqq2.executeUpdate();
+//
+//        Query qqq3 = entityManager.createQuery("update Employee set phone_id = 4 where id=:id");
+//        qqq3.setParameter("id",2);
+//        int rm5 = qqq3.executeUpdate();
+//        Query qqq4 = entityManager.createQuery("update Employee set phone_id = 5 where id=:id");
+//        qqq4.setParameter("id",4);
+//        int rm6 = qqq4.executeUpdate();
+//        Query qqq5 = entityManager.createQuery("update Employee set phone_id = 6 where id=:id");
+//        qqq5.setParameter("id",7);
+//        int rm7 = qqq5.executeUpdate();
+//
+//
+//
+//
+//
+//
+//
+//        Project project = new Project("ProjectOne");
+//        project.setProjectId(1);
+//        entityManager.merge(project);
+////
+////        Query qq3 = entityManager.createQuery("update Project_Employee set employee_id = 1 where id=:id");
+////        qq3.setParameter("id", 1);
+////        int rm4 = qq3.executeUpdate();
+//
+//
+////        public List<Employee> filterEmployeesByPhoneBrand(PhoneBrand brand){
+////
+////        }
+//        Employee ee = entityManager.find(Employee.class,1);
+//
+//        updateEmail();
+//
+//        entityManager.getTransaction().commit();
+
